@@ -91,28 +91,6 @@ function generateRule($code, $amount, $label, $from_date = '', $to_date = '',$we
 }
 
 
-function getAllCustomerGroups(){
-    //get all customer groups
-    $customerGroupsCollection = Mage::getModel('customer/group')->getCollection();
-    $customerGroupsCollection->addFieldToFilter('customer_group_code',array('nlike'=>'%auto%'));
-//    $customerGroupsCollection->load();
-    $groups = array();
-    foreach ($customerGroupsCollection as $group){
-    $groups[] = $group->getId();
-    }
-    return $groups;
-}
-
-function getAllWbsites(){
-    //get all wabsites
-    $websites = Mage::getModel('core/website')->getCollection();
-    $websiteIds = array();
-    foreach ($websites as $website){
-    $websiteIds[] = $website->getId();
-    }
-    return $websiteIds;
-}
-
 function generateUniqueId($length = null){
     $rndId = crypt(uniqid(rand(),1));
     $rndId = strip_tags(stripslashes($rndId));
